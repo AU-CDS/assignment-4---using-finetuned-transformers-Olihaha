@@ -6,7 +6,7 @@ import os
 
 # Load model
 model_name = "j-hartmann/emotion-english-distilroberta-base"
-emotion_classifier = pipeline("sentiment-analysis", model=model_name)
+emotion_classifier = pipeline("sentiment-analysis", model=model_name, return_all_scores=False)
 
 # Function to classify emotions
 def classify_emotion(text):
@@ -15,7 +15,7 @@ def classify_emotion(text):
 
 # Load data
 def load_data():
-    headlines_df = pd.read_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/fake_or_real_news.csv')
+    headlines_df = pd.read_csv('fake_or_real_news.csv')
     return headlines_df
 
 # Perform emotion classification for headline in data and add column for predicted emotions
@@ -29,17 +29,17 @@ def analyze_emotion_distribution(headlines_df):
     all_data_emotion_counts = headlines_df['predicted_emotion'].value_counts()
     print("Distribution of emotions across all data:")
     print(all_data_emotion_counts)
-    all_data_emotion_counts.to_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/all_data_emotion_counts.csv', index=False) 
+    all_data_emotion_counts.to_csv('out/all_data_emotion_counts.csv', index=False) 
     # real news
     real_news_emotion_counts = headlines_df[headlines_df['label'] == 'REAL']['predicted_emotion'].value_counts()
     print("\nDistribution of emotions across real news:")
     print(real_news_emotion_counts)
-    real_news_emotion_counts.to_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/real_news_emotion_counts.csv', index=False)
+    real_news_emotion_counts.to_csv('out/real_news_emotion_counts.csv', index=False)
     # Fake news
     fake_news_emotion_counts = headlines_df[headlines_df['label'] == 'FAKE']['predicted_emotion'].value_counts()
     print("\nDistribution of emotions across fake news:")
     print(fake_news_emotion_counts)
-    fake_news_emotion_counts.to_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/fake_news_emotion_counts.csv', index=False)
+    fake_news_emotion_counts.to_csv('out/fake_news_emotion_counts.csv', index=False)
     # Add colours to the values
     emotion_colours = {
     'anger': 'red',
@@ -58,7 +58,7 @@ def analyze_emotion_distribution(headlines_df):
     axes[1].set_title("Emotion Distribution (Real News)")
     fake_news_emotion_counts.plot(kind='bar', ax=axes[2], color=[emotion_colours[emotion] for emotion in fake_news_emotion_counts.index])
     axes[2].set_title("Emotion Distribution (Fake News)")
-    plt.savefig('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/FakevsReal_Emotions.png')
+    plt.savefig('out/FakevsReal_Emotions.png')
 
 # Too much "neutral" so lets generate the same without neutral
 def analyze_emotion_distribution_withoutneutral(headlines_df):
@@ -67,19 +67,19 @@ def analyze_emotion_distribution_withoutneutral(headlines_df):
     all_data_emotion_counts = all_data_emotion_counts.drop('neutral')
     print("Distribution of emotions across all data(without neutral):")
     print(all_data_emotion_counts)
-    all_data_emotion_counts.to_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/all_data_emotion_counts_without_neutral.csv', index=False)
+    all_data_emotion_counts.to_csv('out/all_data_emotion_counts_without_neutral.csv', index=False)
     # Real news
     real_news_emotion_counts = headlines_df[headlines_df['label'] == 'REAL']['predicted_emotion'].value_counts()
     real_news_emotion_counts = real_news_emotion_counts.drop('neutral')
     print("\nDistribution of emotions across real news(without neutral):")
     print(real_news_emotion_counts)
-    real_news_emotion_counts.to_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/real_news_emotion_counts_without_neutral.csv', index=False)
+    real_news_emotion_counts.to_csv('out/real_news_emotion_counts_without_neutral.csv', index=False)
     # Fake news
     fake_news_emotion_counts = headlines_df[headlines_df['label'] == 'FAKE']['predicted_emotion'].value_counts()
     fake_news_emotion_counts = fake_news_emotion_counts.drop('neutral')
     print("\nDistribution of emotions across fake news(without neutral):")
     print(fake_news_emotion_counts)
-    fake_news_emotion_counts.to_csv('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/fake_news_emotion_counts_without_neutral.csv', index=False)
+    fake_news_emotion_counts.to_csv('out/fake_news_emotion_counts_without_neutral.csv', index=False)
     
     # Add colours to the values
     emotion_colours = {
@@ -98,7 +98,7 @@ def analyze_emotion_distribution_withoutneutral(headlines_df):
     axes[1].set_title("Emotion Distribution (Real News)(without neutral)")
     fake_news_emotion_counts.plot(kind='bar', ax=axes[2], color=[emotion_colours[emotion] for emotion in fake_news_emotion_counts.index])
     axes[2].set_title("Emotion Distribution (Fake News)(without neutral)")
-    plt.savefig('/work/cds-lang/assignment-4---using-finetuned-transformers-Olihaha/out/FakevsReal_Emotions_withoutneutral.png')
+    plt.savefig('out/FakevsReal_Emotions_withoutneutral.png')
 
 
 # Load headlines data
