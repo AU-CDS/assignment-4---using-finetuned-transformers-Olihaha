@@ -35,7 +35,7 @@ setup.sh activates a virtual environment, pip installs necessary libraries and d
 
 run.sh activates the virtual environment, runs the script and deactives itself again.
 
-setupandrun.sh does both.
+runandsetup.sh does both.
 
 ## results
 Neutral came out as the most dominant emotion in both categories so i have chosen to generate both graphs without this emotion included as well, which can be found in the out folder.
