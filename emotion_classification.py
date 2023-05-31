@@ -100,7 +100,6 @@ def analyze_emotion_distribution_withoutneutral(headlines_df):
     axes[2].set_title("Emotion Distribution (Fake News)(without neutral)")
     plt.savefig('out/FakevsReal_Emotions_withoutneutral.png')
 
-
 # Load headlines data
 headlines_df = load_data()
 
