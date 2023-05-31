@@ -1,4 +1,4 @@
-# Assignement 4  -  Using finetuned transformers via HugginFace
+# Assignment 4  -  Using finetuned transformers via HugginFace
 
 ---
 # Introduction and contents
@@ -40,13 +40,10 @@ runandsetup.sh does both.
 ## results
 Neutral came out as the most dominant emotion in both categories so i have chosen to generate both graphs without this emotion included as well, which can be found in the out folder.
 
-### comparing real and fake emotions
-The emotional distribution of real news exposes fear as the most frequent emotion with 555 incidents, chased by anger at 383 incidents, sadness at 245 incidents, disgust at 186 incidents, surprise at 90 incidents, and joy at 63 incidents.
-
-Similar to real news, the fakes news had 521 incidents of fear with 412 incident of anger. There was a different in disgust and sadness being switched around with 248 cases of digsut and 242 cases of sadness which is opposite to the real news. Finally there was 92 cases of joy.
+### comparing real and fake emotions 
+![EMOTIONS](out/FakevsReal_Emotions_withoutneutral.png)
+The emotions between both fake and real news are extremely similar. 
 
 ### takeaways
-Across both real and fake news, fear and anger emerge as the leading emotions. An interesting observation is that fake news appears to initiate similar emotional responses as real news, suggesting that emotional manipulation can be employed in either format of news content. The presence of emotions in news can potentially impact readers' perception and interpretation of the news, highlighting the importance of critically evaluating news sources and content.
-
-Based on the similary this naturally also indicates that emotion is clearly not a good indication of real vs fake news.
-Especially considering that in assignment 2 we were able to predict fake vs real emotions with above 80% accuracy using other models.
+Initially I was expecting the fake news to be way more negative than its counterpart which most definitely is not the case. I assume that this is because the goal of fake news is to be so similar to real news that they cannot be told apart by the reader.
+Based on the similarity this naturally also indicates that emotion is clearly not a good indication of real vs fake news. Especially considering that in assignment 2 we were able to predict fake vs real emotions with above 80% accuracy using other models.
